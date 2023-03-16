@@ -24,6 +24,7 @@ const routes: Routes = [
   {
     path:'map',component:MapComponent
   },
+  { path: 'userregister', loadChildren: () => import('./userregister/userregister.module').then(m => m.UserregisterModule) },
   {
     path:'**',component:LoginComponent
   }

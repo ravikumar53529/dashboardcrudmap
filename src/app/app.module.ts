@@ -27,6 +27,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {DropdownModule} from 'primeng/dropdown';
 import { MapComponent } from './map/map.component';
+
+
 MapComponent
 @NgModule({ 
   declarations: [

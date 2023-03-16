@@ -8,25 +8,25 @@
     },
     {
       "userId": 2,
-      "title": "amazon2",
+      "title": "amazon4",
       "body": "Ecommerce",
       "id": 2
     },
     {
       "userId": 3,
-      "title": "flipcart",
+      "title": "flipcart1",
       "body": "Ecommerce",
       "id": 3
     },
     {
       "userId": "4",
-      "title": "apple",
+      "title": "apple1",
       "body": "Ecommerce",
       "id": 4
     },
     {
       "userId": "5",
-      "title": "sony",
+      "title": "sony1",
       "body": "electronics",
       "id": 5
     },
@@ -35,6 +35,18 @@
       "title": "samsung",
       "body": "Electronics",
       "id": 6
+    },
+    {
+      "userId": "7",
+      "title": "motorola",
+      "body": "electronics",
+      "gender": "Male",
+      "fruits": {
+        "fruit1": "orange",
+        "fruit2": "apple",
+        "fruit3": "banana"
+      },
+      "id": 7
     }
   ]
 }
