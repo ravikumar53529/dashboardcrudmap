@@ -1,0 +1,11 @@
+[
+    {
+        "context": [
+            "/api",
+            "/uploads" 
+        ],
+        "target":"http://206.189.140.51:3000/",
+        "secure": true,
+        "changeOrigin": true
+    }
+]

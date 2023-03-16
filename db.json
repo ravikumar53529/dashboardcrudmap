@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "userId": 1,
+      "title": "Ahex",
+      "body": "Software company",
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "title": "amazon2",
+      "body": "Ecommerce",
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "title": "flipcart",
+      "body": "Ecommerce",
+      "id": 3
+    },
+    {
+      "userId": "4",
+      "title": "apple",
+      "body": "Ecommerce",
+      "id": 4
+    },
+    {
+      "userId": "5",
+      "title": "sony",
+      "body": "electronics",
+      "id": 5
+    },
+    {
+      "userId": "6",
+      "title": "samsung",
+      "body": "Electronics",
+      "id": 6
+    }
+  ]
+}

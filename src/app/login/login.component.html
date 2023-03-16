@@ -1,0 +1,73 @@
+<div class="login-container">
+
+
+<div class="flex justify-content-center align-items-center" style="height:'100vh'">
+  <p-card  [style]="{'width':'400px',height:'auto'}">
+    <ng-template pTemplate="header">  
+     
+    </ng-template>
+    
+      <div class="col-12">
+        <div class="flex  justify-content-center ">
+            <h3 class="text-red-700">LOGIN</h3>
+        </div>
+        
+        <div class="card">
+            <form [formGroup]="loginFormData" (ngSubmit)="onLoginFormData()">
+            <div class="field">
+                <label for="username">Username</label>
+                <input id="username" formControlName="username" type="text" class="text-base text-color p-2 surface-overlay w-full border-round focus:border-primary  border-1 border-solid surface-border appearance-none outline-none">
+                 <div *ngIf="username && username.invalid && (username.touched || username.dirty)">
+                   <div *ngIf="username.errors?.['required']">
+                      <div class="text-red-400">
+                      Username is required
+                      </div>
+                   </div>
+                   <div *ngIf="username.errors?.['minlength']">
+                       <div class="text-red-400"> 
+                          Username length should be 5
+                       </div>
+                   </div>
+                   <div *ngIf="username.errors?.['pattern']">
+                    <div class="text-red-400">
+                     Username  should contain  a-z/A-Z format only.
+                    </div>
+                    </div>
+                 </div>
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <input id="password"   formControlName="password" type="password" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                    <div *ngIf="password && password.invalid && (password.dirty || password.touched)">
+                    <div *ngIf="password.errors?.['required']">
+                       <div class="text-red-400">
+                          Password is required
+                       </div>
+                    </div>
+                    <div *ngIf="password.errors?.['minlength']">
+                        <div class="text-red-400">
+                         Password length should be 5
+                        </div>
+                    </div>
+                    <div *ngIf="password.errors?.['pattern']">
+                        <div class="text-red-400">
+                         Password  should contain  a-z/A-Z/0-9 format only.
+                        </div>
+                    </div>
+                    
+                    </div>
+            </div>
+            <div class="field flex justify-content-center"> 
+                <button type="submit"  [disabled]="loginFormData.invalid" pButton label="Submit" class="mr-3"></button>
+                <button type="reset"  pButton label="Reset" class="p-button-danger"></button>
+            </div>
+        </form>
+        </div>
+        
+      </div>
+    <ng-template p-template="footer">
+
+    </ng-template>
+  </p-card>
+</div>
+</div>

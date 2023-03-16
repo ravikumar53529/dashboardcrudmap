@@ -1,0 +1,95 @@
+[
+    {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJpYXQiOjE2MTcwMTUyMTYsImV4cCI6MTYxNzAxODgxNn0.fM5mK_k5o5P-qGbOvn8z-6wHw-MQ2jKgCv1UVEh6N18",
+        "user": {
+          "username": "john"
+        },
+        "expiresIn": "1h",
+        "course":"Angular",
+        "coursetakenon":"15/01/2023",
+        "courseexpiresIn":"15/01/2024",
+        "users":29,
+        "orders":12,
+        "income":100000,
+        "partners":5,
+        "dognutData":
+        {
+          "labels": ["Customers","Orders","Partners"],
+          "datasets": [
+              {
+                  "data": [29, 12, 5],
+                  "backgroundColor": [
+                      "#FF6384",
+                      "#36A2EB",
+                      "#FFCE56"
+                  ],
+                  "hoverBackgroundColor": [
+                      "#FF6384",
+                      "#36A2EB",
+                      "#FFCE56"
+                  ]
+              }]    
+        },
+        "usersdata":[
+          {
+            "id":"11A",
+            "user":"RAVI",
+            "place":"HYD",
+            "orderplaced":"12/02/2023",
+            "phonenumber":"9441153529"
+          },
+          {
+            "id":"11B",
+            "user":"RAJU",
+            "place":"MUMBAI",
+            "orderplaced":"1/03/2023",
+            "phonenumber":"8008007328"
+          },
+          {
+            "id":"11C",
+            "user":"SUMAN",
+            "place":"DELHI",
+            "orderplaced":"8/03/2023",
+            "phonenumber":"9441234562"
+          }
+        ],
+        "partnersdata":[
+          {
+            "companyname":"Sony",
+            "industry":"electronics",
+            "revenue":"12000",
+            "image":"https://logos-world.net/wp-content/uploads/2020/04/Sony-Logo-1957-1961.png"
+
+          },
+          {
+            "companyname":"Bajaj",
+            "industry":"electronics",
+            "revenue":"10000",
+            "image":"https://listcarbrands.com/wp-content/uploads/2017/11/Bajaj-Logo.png"
+
+          },
+          {
+            "companyname":"Samsung",
+            "industry":"electronics",
+            "revenue":"25000",
+            "image":"https://th.bing.com/th/id/R.9c1f5ff53196bb774cd39ab81525ee24?rik=Pd4W9aanOvgbgg&riu=http%3a%2f%2fgadgetsmagazine.com.ph%2fwp-content%2fuploads%2f2017%2f07%2fPress8FeaturedIMG1July2017.jpg&ehk=cnyMQJe3kepfKUeuihfgfIz3oTHxPmhMSWHHCgRxBUg%3d&risl=&pid=ImgRaw&r=0"
+
+          }
+        ],
+        "orderedanddelivered":{
+          "labels": ["January", "February", "March", "April", "May", "June", "July"],
+            "datasets": [
+                {
+                    "label": "Ordered",
+                    "backgroundColor": "#42A5F5",
+                    "data": [65, 59, 80, 81, 56, 55, 40]
+                },
+                {
+                    "label": "Delivered",
+                    "backgroundColor": "#FFA726",
+                    "data": [28, 48, 40, 19, 26, 27, 32]
+                }
+            ]
+        }
+      }
+]

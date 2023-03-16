@@ -1,0 +1,148 @@
+<div class="grid"> 
+<div class="lg:col-12 md:col-12 sm:col-12 xs:col-12"  >
+  <div class="justify-content-end">
+    <button pButton type="button" class="p-button-rounded" (click)="onAddDetails()"><i class="pi pi-plus"></i></button>
+  </div>
+  <p-table [value]="jsonplaceData" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>UserId</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{product.id}}</td>
+            <td>{{product.title}}</td>
+            <td>{{product.body}}</td>
+            <td>{{product.userId}}</td>
+            <td>
+              <div class="flex">
+                <button pButton class="p-button-rounded p-button-success" (click)="onUpdatejson(product.id,product)" type="button" >Update</button>
+                <button  pButton class="p-button-rounded p-button-danger" (click)="onDeletejson(product.id)" type="button" >Delete</button>
+              </div>
+            </td>
+        </tr>
+    </ng-template>
+  </p-table>
+</div>
+</div>
+<!-- add popup -->
+<p-dialog header="Title" [(visible)]="addDetailsPopup">
+  <div class="card">
+    <form [formGroup]="form" (ngSubmit)="onsubmit()" >
+    <div class="field">
+        <label for="userid">User ID</label>
+        <input id="userid" type="text" formControlName="userId" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field">
+        <label for="title">Title</label>
+        <input id="title" type="text"   formControlName="title" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field">
+      <label for="body">Body</label>
+      <input id="body" type="text"   formControlName="body" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+  </div>
+  <div class="field">
+    <input type="radio" formControlName="gender" value="Male" name="gender" id=""><label for="male">Male</label>
+     <input type="radio" formControlName="gender" value="Female" name="gender" id=""><label for="female">Female</label>
+     <input type="radio" formControlName="gender" value="Others" name="gender" id=""><label for="others">Others</label>
+  </div>
+  <div class="field">
+    <div formGroupName="fruits">
+      <input type="checkbox" formControlName="fruit1" value="orange" id=""><label for="male">orange</label>
+      <input type="checkbox" formControlName="fruit2" value="apple"   id=""><label for="female">apple</label>
+      <input type="checkbox" formControlName="fruit3" value="banana"  id=""><label for="others">banana</label>
+    </div>
+    
+  </div>
+  <div class="flex">
+    <input pButton class="p-button-rounded p-button-primary" type="submit" value="submit">
+    <input pButton class="p-button-rounded p-button-danger" type="submit" (click)="closeAddPopup" value="cancel">
+  </div>
+  </form>
+</div>
+</p-dialog>
+<!-- update popup -->
+<p-dialog header="Title" [(visible)]="updatePopup">
+  <div class="card">
+    <form [formGroup]="updateForm" (ngSubmit)="onUpdate()" >
+    <div class="field">
+        <label for="userid">User ID</label>
+        <input id="userid" type="text" formControlName="userId" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field">
+        <label for="title">Title</label>
+        <input id="title" type="text"   formControlName="title" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field">
+      <label for="body">Body</label>
+      <input id="body" type="text"   formControlName="body" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+  </div>
+  <div class="flex">
+    <input pButton class="p-button-rounded p-button-primary" type="submit" value="update">
+    <input pButton class="p-button-rounded p-button-danger" (click)="closeUpdatePopup()" value="cancel">
+  </div>
+  </form>
+</div>
+</p-dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="grid">
+<div class="col-12">
+    <!--    -->
+</div>
+<div class="col-6"><div class="container">
+    <canvas id="myCanvas"></canvas>
+    <img #imageElement src=""[style]="{'display':'none'}" alt="Image Preview">
+   <canvas #canvas></canvas>
+   <button (click)="loadImage2()">Load Image</button>
+    <!-- <input type="file" name="" id="" (change)="onFileSelected($event)">  -->
+    <button (click)="addWatermarkForImage2()">Add Watermark</button>
+  </div>
+  <div class="col:12">
+    <canvas id="myVideoCanvas"></canvas>
+    <video  #videoElement width="320" height="240" controls>
+      <source  src="" type="video/mp4">
+    </video>
+    <!-- <button (click)="loadVideo()">Load Image</button>
+    <button (click)="addWatermarkForVideo()">Add Watermark</button> -->
+  </div>
+
+  <img [src]=waterImg alt="">
+</div>
+</div>
+<img src="{{tempImg}}" alt="" width="500px" height="300px">
+<div class="card">
+
+</div>
+
+
+
+<i class="pi pi-check"></i>
+

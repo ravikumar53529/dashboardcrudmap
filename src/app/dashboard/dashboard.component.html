@@ -1,0 +1,584 @@
+<div class="grid">
+  <div class="lg:col-2 xs:col-6">
+    <div [style]="{ width: '15%', position: 'fixed' }">
+      <p-panelMenu [model]="items" [style]="{ width: '100%' }"></p-panelMenu>
+    </div>
+  </div>
+  <div class="lg:col-10 xs:col-12">
+    <div class="main-dashboard">
+      <p-menubar>
+        <ng-template pTemplate="start">
+          <img src="../../assets/images/OIP.jpg" height="40" class="p-mr-2" />
+        </ng-template>
+        <ng-template pTemplate="end">
+          <p-button (click)="onLogout()">
+            <i class="pi pi-sign-out"></i>
+          </p-button>
+        </ng-template>
+      </p-menubar>
+      <div class="card">
+        <div *ngFor="let data of dashboardData">
+          <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+            <div class="grid">
+              <div class="col-12 md:col-6 lg:col-3">
+                <div class="surface-card shadow-2 p-3 border-round">
+                  <div class="flex justify-content-between mb-3">
+                    <div>
+                      <span class="block text-500 font-medium mb-3"
+                        >Orders</span
+                      >
+                      <div class="text-900 font-medium text-xl">
+                        {{ data.orders }}
+                      </div>
+                    </div>
+                    <div
+                      class="flex align-items-center justify-content-center bg-blue-100 border-round"
+                      style="width: 2.5rem; height: 2.5rem"
+                    >
+                      <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
+                    </div>
+                  </div>
+                  <span class="text-green-500 font-medium">4 new </span>
+                  <span class="text-500">since last visit</span>
+                </div>
+              </div>
+              <div class="col-12 md:col-6 lg:col-3">
+                <div class="surface-card shadow-2 p-3 border-round">
+                  <div class="flex justify-content-between mb-3">
+                    <div>
+                      <span class="block text-500 font-medium mb-3"
+                        >Revenue</span
+                      >
+                      <div class="text-900 font-medium text-xl">
+                        {{ data.income | currency : "INR" }}
+                      </div>
+                    </div>
+                    <div
+                      class="flex align-items-center justify-content-center bg-orange-100 border-round"
+                      style="width: 2.5rem; height: 2.5rem"
+                    >
+                      <i class="pi pi-map-marker text-orange-500 text-xl"></i>
+                    </div>
+                  </div>
+                  <span class="text-green-500 font-medium">%10+ </span>
+                  <span class="text-500">since last week</span>
+                </div>
+              </div>
+              <div class="col-12 md:col-6 lg:col-3">
+                <div class="surface-card shadow-2 p-3 border-round">
+                  <div class="flex justify-content-between mb-3">
+                    <div>
+                      <span class="block text-500 font-medium mb-3"
+                        >Customers</span
+                      >
+                      <div class="text-900 font-medium text-xl">
+                        {{ data.users }}
+                      </div>
+                    </div>
+                    <div
+                      class="flex align-items-center justify-content-center bg-cyan-100 border-round"
+                      style="width: 2.5rem; height: 2.5rem"
+                    >
+                      <i class="pi pi-inbox text-cyan-500 text-xl"></i>
+                    </div>
+                  </div>
+                  <span class="text-green-500 font-medium">10 </span>
+                  <span class="text-500">newly registered</span>
+                </div>
+              </div>
+              <div class="col-12 md:col-6 lg:col-3">
+                <div class="surface-card shadow-2 p-3 border-round">
+                  <div class="flex justify-content-between mb-3">
+                    <div>
+                      <span class="block text-500 font-medium mb-3"
+                        >Partenrs</span
+                      >
+                      <div class="text-900 font-medium text-xl">
+                        {{ data.partners }}
+                      </div>
+                    </div>
+                    <div
+                      class="flex align-items-center justify-content-center bg-purple-100 border-round"
+                      style="width: 2.5rem; height: 2.5rem"
+                    >
+                      <i class="pi pi-user text-purple-500 text-xl"></i>
+                    </div>
+                  </div>
+                  <span class="text-green-500 font-medium">2 </span>
+                  <span class="text-500">Recently   Added</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="col-3">
+          <div *ngFor="let data of dashboardData">
+            <p-chart type="doughnut" [data]="data.dognutData"></p-chart>
+          </div>
+        </div>
+        <div class="col-4">
+          <p-calendar [inline]="true" [showWeek]="true"></p-calendar>
+        </div>
+        <div class="col-5">
+          <div *ngFor="let data of dashboardData">
+            <div class="card">
+              <p-chart type="bar" [data]="data.orderedanddelivered"></p-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="col-12">
+          <div [style]="{ width: '100%' }">
+            <h1 class="text-align-center">Users table</h1>
+          </div>
+
+          <div *ngFor="let data of dashboardData">
+            <p-table
+              #dt
+              [value]="data.usersdata"
+              [rows]="3"
+              [paginator]="true"
+              [globalFilterFields]="['user', 'place', 'phonenumber', 'id']"
+              [rowHover]="true"
+              dataKey="id"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+              [showCurrentPageReport]="true"
+            >
+              <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                  <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input
+                      pInputText
+                      type="text"
+                      (input)="
+                        dt.filterGlobal($any($event.target).value, 'contains')
+                      "
+                      placeholder="Search..."
+                    />
+                  </span>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header">
+                <tr>
+                  <th pSortableColumn="partner">
+                    Id<p-sortIcon field="name"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="partner">
+                    User<p-sortIcon field="name"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="price">
+                    Place <p-sortIcon field="price"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    Order Placed <p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    Phone Number <p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-data>
+                <tr>
+                  <td>{{ data.id }}</td>
+                  <td>{{ data.user | uppercase }}</td>
+                  <td>{{ data.place | uppercase }}</td>
+                  <td>{{ data.orderplaced }}</td>
+                  <td>{{ data.phonenumber | uppercase }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- <p-table [value]="data.usersdata"  styleClass="p-datatable-striped">
+                             <ng-template pTemplate="hedaer">
+                                <tr>
+                                    <th>User</th>
+                                    <th>Place</th>
+                                    <th>Order Placed</th>
+                                    <th>Phone number</th>
+                                </tr>
+                             </ng-template>
+                             <ng-template pTemplate="body" let-data>
+                              <tr>
+                                <td>{{data.user}}</td>
+                                <td>{{data.place}}</td>
+                                <td>{{data.orderplaced}}</td>
+                                <td>{{data.phonenumber}}</td>
+                              </tr>
+                             </ng-template>
+                          </p-table> -->
+        </div>
+
+        <div class="col-12">
+          <h1>Partners table</h1>
+          <div *ngFor="let data of dashboardData">
+            <p-table
+              #dt
+              [value]="data.partnersdata"
+              [rows]="3"
+              [paginator]="true"
+              [globalFilterFields]="['companyname', 'Industry', 'Revenue']"
+              [rowHover]="true"
+              dataKey="id"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+              [showCurrentPageReport]="true"
+            >
+              <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                  <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input
+                      pInputText
+                      type="text"
+                      (input)="
+                        dt.filterGlobal($any($event.target).value, 'contains')
+                      "
+                      placeholder="Search..."
+                    />
+                  </span>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header">
+                <tr>
+                  <th pSortableColumn="partner">
+                    Name<p-sortIcon field="name"></p-sortIcon>
+                  </th>
+                  <th>Image</th>
+                  <th pSortableColumn="price">
+                    Industry <p-sortIcon field="price"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    Revenue <p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-data>
+                <tr>
+                  <td>{{ data.companyname | uppercase }}</td>
+                  <td>
+                    <img
+                      src="{{ data.image }}"
+                      width="100"
+                      class="p-shadow-4"
+                    />
+                  </td>
+                  <td>{{ data.revenue | currency : "USD" }}</td>
+                  <td>{{ data.industry | uppercase }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+
+            <!-- <p-table [value]="data.partnersdata"  styleClass="p-datatable-striped">
+                       <ng-template pTemplate="hedaer">
+                          <tr>
+                              <th>Company Name</th>
+                              <th>Industry</th>
+                              <th>Revenue</th>
+                          </tr>
+                       </ng-template>
+                       <ng-template pTemplate="body" let-data>
+                        <tr>
+                          <td>{{data.companyname|uppercase}}</td>
+                          <td>{{data.industry|uppercase}}</td>
+                          <td>{{data.revenue}}</td>
+                        </tr>
+                       </ng-template>
+                    </p-table> -->
+          </div>
+        </div>
+      </div>
+      <div class="grid">
+          <div class=col-6>
+                <canvas #canvas></canvas>
+                <input type="file" name="" id="" (change)="onFileSelected($event)">         
+          </div>
+          <div class="col-6 " >
+            
+              <video #videoElement controls ></video>
+              <canvas #canvasElement [style]="{'display':'none'}"></canvas>
+            
+          <input type="file" name="" id="" (change)="onVideoFileSelected($event)">
+          <button (click)="downloadWatermarkedVideo()">Water marked  Video</button>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="lg:col-12">
+          <p-toolbar styleClass="mb-4 gap-2">
+            <ng-template pTemplate="left">   
+            </ng-template>
+            <ng-template pTemplate="right">
+              <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>  
+            </ng-template>
+        </p-toolbar>
+            <p-table
+              #dt
+              [value]="visitorsData"
+              [rows]="3"
+              [paginator]="true"
+              [globalFilterFields]="['visitId', 'workshopId', 'surveyorId', 'defaulterName']"
+              [rowHover]="true"
+              dataKey="id"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+              [showCurrentPageReport]="true"
+            >
+              <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                  <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input
+                      pInputText
+                      type="text"
+                      (input)="
+                        dt.filterGlobal($any($event.target).value, 'contains')
+                      "
+                      placeholder="Search..."
+                    />
+                  </span>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header">
+                <tr>
+                  <th pSortableColumn="category">
+                    imageUrl<p-sortIcon field="category"></p-sortIcon>
+                  </th>   
+                  <!-- <th pSortableColumn="partner">
+                    visitId<p-sortIcon field="name"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="partner">
+                    workshopId<p-sortIcon field="name"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="price">
+                    surveyorId <p-sortIcon field="price"></p-sortIcon>
+                  </th> -->
+                  <th pSortableColumn="category">
+                    rcNumber <p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    defaulterName<p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    matterName<p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    purposeOfVisit<p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    visitStatus<p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    dateTime<p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    latitude<p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    longitude<p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    deviceId<p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                    address<p-sortIcon field="category"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="category">
+                     Action
+                  </th>
+                         
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-data>
+                <tr>
+                  <td><img src="{{ data.imageUrl}}" alt="" width="100px" height="100px"></td>
+                  <!-- <td>{{ data.visitId }}</td>
+                  <td>{{ data.workshopId}}</td>
+                  <td>{{ data.surveyorId }}</td> -->
+                  <td>{{ data.rcNumber }}</td>
+                  <td>{{ data.defaulterName }}</td>
+                  <td>{{ data.matterName }}</td>
+                  <td>{{ data.purposeOfVisit}}</td>
+                  <td>{{ data.visitStatus }}</td>
+                  <td>{{ data.dateTime| date:'full' }}</td>
+                  <td>{{ data.latitude }}</td>
+                  <td>{{ data.longitude}}</td>
+                  <td>{{ data.deviceId }}</td>
+                  <td>{{ data.address }}</td>
+                  <td>
+                    <div class="flex">
+                      <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editVisitorsDialog(data,data.Id)"></button>
+                      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteVisitorsData(data.Id)"></button>
+                    </div>                  
+                </td>
+                </tr>
+              </ng-template>
+            </p-table>
+      <!-- updating dialog -->
+            <p-dialog [(visible)]="showUpdateDialog" [style]="{width: '450px'}" header="Add Visitors Details" [modal]="true" styleClass="p-fluid">
+              <ng-template pTemplate="content">
+                <form action="" [formGroup]="newDetailsAddedForm">
+                  <!-- <div class="field">
+                   <label for="id">Id</label>
+                   <input type="number"  formControlName="id" pInputText    id="id" autofocus >
+                   <small class="p-error">Id is required.</small>
+                  </div> -->
+                  <!-- <div class="formgrid grid">
+                    <div class="field col">
+                      <label for="surveyorid">Surveyor Id</label>
+                      <input type="number" pInputText formControlName="surveyorid" name="" id="surveyorid">
+                      <small class="p-error">Surveyor Id is required.</small>
+                    </div>
+                    <div class="field col">
+                      <label for="workshopid">Workshop Id</label>
+                      <input type="number" pInputText formControlName="workshopid" name="" id="workshopid">
+                      <small class="p-error">Workshop Id is required.</small>
+                    </div>
+                  </div> -->
+                   <div class="field">
+                      <label for="rcnumber">Rc Number</label>
+                    <input type="text" formControlName="rcNumber" pInputText id="rcnumber" autofocus />
+                     <div *ngIf="rcNumber && rcNumber.invalid && (rcNumber.touched || rcNumber.dirty)">
+                     <div *ngIf="rcNumber.errors?.['required']">
+                      <small class="p-error">Rc Number is required.</small>
+                     </div>
+                    </div> 
+                    </div>
+                  <div class="field">    
+                      <label for="name">Name of Defaulter</label>
+                      <input type="text" formControlName="defaulterName" pInputText id="name" autofocus />
+                      <div *ngIf="defaulterName && defaulterName.invalid && (defaulterName.touched || defaulterName.dirty)">
+                        <div *ngIf="defaulterName.errors?.['required']">
+                          <small class="p-error">Defaulter Name is required.</small>
+                        </div>
+                       </div>  
+                  </div>
+                  <div class="field">    
+                    <label for="name">Name of Matter</label>
+                    <input type="text" formControlName="matterName" pInputText id="name" autofocus />
+                    <div *ngIf="matterName && matterName.invalid && (matterName.touched || matterName.dirty)">
+                      <div *ngIf="matterName.errors?.['required']">
+                        <small class="p-error">Name of Matter is required.</small>
+                      </div>
+                     </div> 
+                </div>
+                  <!-- <div class="formgrid grid">
+                    <div class="field col">
+                      <label for="latitude">Latitude</label>
+                      <input type="text" formControlName="latitude"
+                      pInputText id="latitude" required autofocus />
+                      <small class="p-error">Latitude is required.</small>
+                    </div>
+                    <div class="field col">
+                    <label for="longitude">Longitude</label>
+                    <input type="text"  formControlName="longitude"  pInputText id="longitude" required autofocus />
+                    <small class="p-error">Longitude is required.</small>
+                    </div>
+                  </div>
+                 
+                    <div class="field">
+                        <label for="status">Status</label>
+                       <p-dropdown [options]="statusValues" placeholder="Select a Status" optionLabel="name" formControlName="visitStatus"></p-dropdown>
+                        <small class="p-error">Status is required.</small>
+                      </div>
+                    <div class="field">    
+                        <label for="dateandtime">Date and Time</label>
+                        <input type="datetime-local" formControlName="dateTime" pInputText id="dateandtime" required autofocus />
+                        <small class="p-error">Date and Time is required.</small>  
+                    </div>
+                  --> 
+                    <div class="field">    
+                        <label for="purposeofvisit">Purpose of visit</label>
+                        <input type="text" pInputText formControlName="purposeOfVisit" id="purposeofvisit" required autofocus />
+                        <div *ngIf="purposeOfVisit && purposeOfVisit.invalid && (purposeOfVisit.touched || purposeOfVisit.dirty)">
+                          <div *ngIf="purposeOfVisit.errors?.['required']">
+                            <small class="p-error">Purpose of visit is required.</small> 
+                          </div>
+                         </div>    
+                    </div>
+                    <div class="field col">
+                      <label for="surveyorid">Surveyor Id</label>
+                      <input type="number" pInputText formControlName="surveyorId" name="" id="surveyorid">
+                      <div *ngIf="surveyorId && surveyorId.invalid && (surveyorId.touched || surveyorId.dirty)">
+                        <div *ngIf="surveyorId.errors?.['required']">
+                          <small class="p-error">Surveyor Id is required.</small>
+                        </div>
+                       </div>       
+                    </div>
+                
+                <!-- <div class="field">
+                  <label for="address">Address</label>
+                  <textarea pInputTextarea  formControlName="address"></textarea>
+                  <small class="p-error">Address is required.</small>
+                </div> -->
+              </form>              
+              </ng-template>
+          
+              <ng-template pTemplate="footer">
+                  <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideUpdateDialog()"></button>
+                  <button pButton [disabled]="newDetailsAddedForm.invalid" pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="updateVisitorsData(1)"></button>
+              </ng-template>
+          </p-dialog>
+          <!-- visitors details add dialog -->
+          <p-dialog [(visible)]="showDialog" [style]="{width: '450px'}" header="Add Visitors Details" [modal]="true" styleClass="p-fluid">
+            <ng-template pTemplate="content">
+              <form action="" [formGroup]="newDetailsAddedForm">
+                 <div class="field">
+                    <label for="rcnumber">Rc Number</label>
+                  <input type="text" formControlName="rcNumber" pInputText id="rcnumber" autofocus />
+                   <div *ngIf="rcNumber && rcNumber.invalid && (rcNumber.touched || rcNumber.dirty)">
+                   <div *ngIf="rcNumber.errors?.['required']">
+                    <small class="p-error">Rc Number is required.</small>
+                   </div>
+                  </div> 
+                  </div>
+                <div class="field">    
+                    <label for="name">Name of Defaulter</label>
+                    <input type="text" formControlName="defaulterName" pInputText id="name" autofocus />
+                    <div *ngIf="defaulterName && defaulterName.invalid && (defaulterName.touched || defaulterName.dirty)">
+                      <div *ngIf="defaulterName.errors?.['required']">
+                        <small class="p-error">Defaulter Name is required.</small>
+                      </div>
+                     </div>  
+                </div>
+                <div class="field">    
+                  <label for="name">Name of Matter</label>
+                  <input type="text" formControlName="matterName" pInputText id="name" autofocus />
+                  <div *ngIf="matterName && matterName.invalid && (matterName.touched || matterName.dirty)">
+                    <div *ngIf="matterName.errors?.['required']">
+                      <small class="p-error">Name of Matter is required.</small>
+                    </div>
+                   </div> 
+              </div>
+                 <div class="field">    
+                      <label for="purposeofvisit">Purpose of visit</label>
+                      <input type="text" pInputText formControlName="purposeOfVisit" id="purposeofvisit" required autofocus />
+                      <div *ngIf="purposeOfVisit && purposeOfVisit.invalid && (purposeOfVisit.touched || purposeOfVisit.dirty)">
+                        <div *ngIf="purposeOfVisit.errors?.['required']">
+                          <small class="p-error">Purpose of visit is required.</small> 
+                        </div>
+                       </div>    
+                  </div>
+                  <div class="field col">
+                    <label for="surveyorid">Surveyor Id</label>
+                    <input type="number" pInputText formControlName="surveyorId" name="" id="surveyorid">
+                    <div *ngIf="surveyorId && surveyorId.invalid && (surveyorId.touched || surveyorId.dirty)">
+                      <div *ngIf="surveyorId.errors?.['required']">
+                        <small class="p-error">Surveyor Id is required.</small>
+                      </div>
+                     </div>       
+                  </div>
+            </form>              
+            </ng-template>
+        
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton [disabled]="newDetailsAddedForm.invalid" pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveVisitorsData()"></button>
+            </ng-template>
+        </p-dialog>
+        <img src="{{testImage}}" alt="" width="500px" height="500px">
+       
+      </div>
+    </div>
+  </div>
+</div>

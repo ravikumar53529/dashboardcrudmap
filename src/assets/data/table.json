@@ -1,0 +1,32 @@
+
+[{
+	"visitId": 1,
+	"workshopId": 1,
+	"surveyorId": 1,
+	"rcNumber": "121",
+	"defaulterName": "susma",
+	"matterName": "xyz",
+	"purposeOfVisit": "check anaylytics",
+	"visitStatus": "completed",
+	"dateTime": "Sun Mar 12 2023 18:18:54 GMT+0530 (India Standard Time)",
+	"latitude": "12.971599",
+	"longitude": "77.594566",
+	"deviceId": "123456",
+	"address": "banglore",
+	"imageUrl": "https://th.bing.com/th/id/OIP.Uo81CoJ1d7-M93o3mhGNQwHaHa?pid=ImgDet&rs=1"
+}, {
+	"visitId": 2,
+	"workshopId": 2,
+	"surveyorId": 1,
+	"rcNumber": "121",
+	"defaulterName": "ravikumar",
+	"matterName": "xyz",
+	"purposeOfVisit": "check analytics",
+	"visitStatus": "completed",
+	"dateTime": "Sun Mar 12 2023 18:18:54 GMT+0530 (India Standard Time)",
+	"latitude": "17.385044",
+	"longitude": "78.486671",
+	"deviceId": "12345",
+	"address": "hyderbad",
+	"imageUrl": "https://th.bing.com/th/id/OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH?w=202&h=194&c=7&r=0&o=5&dpr=1.5&pid=1.7"
+}]
