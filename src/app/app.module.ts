@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {DashboardserviceService} from './services/dashboardservice.service'
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CardModule} from 'primeng/card';
 import {InputTextModule} from 'primeng/inputtext'
@@ -27,7 +27,12 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {DropdownModule} from 'primeng/dropdown';
 import { MapComponent } from './map/map.component';
-
+import { AvatarModule } from 'primeng/avatar';
+import { SampleinterceptorsInterceptor } from './interceptors/sampleinterceptors.interceptor';
+import {ProgressSpinnerModule} from 'primeng/progressspinner'
+import { AuthGuard } from 'src/assets/gaurds/auth.guard';
+import { UsersgaurdService } from './gaurds/usersgaurd.service';
+import { AuthgaurdService } from './gaurds/authgaurd.service';
 
 MapComponent
 @NgModule({ 
@@ -58,9 +63,18 @@ MapComponent
     DialogModule,
     InputNumberModule,
     InputTextareaModule,
-    DropdownModule
+    DropdownModule,
+    AvatarModule,
+    ProgressSpinnerModule
+    
   ],
-  providers: [DashboardserviceService],
+  providers: [DashboardserviceService,AuthgaurdService,UsersgaurdService
+  // {
+  //   provide:HTTP_INTERCEPTORS,
+  //   useClass:SampleinterceptorsInterceptor,
+  //   multi:true
+  // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,3 +9,6 @@ export interface josnPlaceholderchild{
   "title": string,
   "body": string     
 }
+export interface jsonPlaceholderChild2{
+  "title":string
+}

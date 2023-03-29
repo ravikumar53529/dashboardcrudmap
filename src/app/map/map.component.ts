@@ -35,9 +35,7 @@ export class MapComponent {
    });
   })
    
-   // Add map controls
-   this.map.addControl(new mapboxgl.NavigationControl());  
- }
+}
  //onActivity mouse activity
  public onActivity():void{
   console.log("hello")

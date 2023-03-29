@@ -1,15 +1,16 @@
 <div class="login-container">
-
-
 <div class="flex justify-content-center align-items-center" style="height:'100vh'">
   <div  [style]="{'width':'400px',height:'auto'}">
     <ng-template pTemplate="header">  
-     
     </ng-template>
     
       <div class="col-12">
+        <div  class="spinner" *ngIf="spinner">   
+            
+<p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+        </div>
         <div class="text-center">
-        <img src="../../assets/images/SEBI-logo.png" alt="sebi" width="100px" height="80px">
+        <img src="../../assets/images/Letter-R-PNG-Pic.png" alt="sebi" width="100px" height="80px">
         </div>
         <div class="flex  justify-content-center ">
             <h3 class="text-white-alpha-80">LOGIN</h3>
@@ -59,15 +60,17 @@
                     </div>
                     
                     </div>
+                    <h5 class="text-white-alpha-80 text-lg  text-center">Forget Password? <a class="no-underline text-red-400" routerLink="/userregister/forgetpassword"  >Click here!</a> </h5>
             </div>
-            <div class="field">
-             <h5 class="text-blue-500  text-lg ml-7">Don't have an account? <a class="no-underline text-orange-500 " routerLink="/userregister"  >Create today!</a> </h5>
-            </div>
+           
             <div class="field flex justify-content-center"> 
                 <button type="submit"  [disabled]="loginFormData.invalid" pButton label="Submit" class="mr-3 p-button-primary p-button-rounded"></button>
                 <button type="reset"  pButton label="Reset" class="p-button-danger p-button-rounded"></button>
             </div>
         </form>
+        <div class="field">
+          <h5 class="text-blue-500  text-lg text-center">Don't have an account? <a class="no-underline text-orange-500 " routerLink="/userregister"  >Create today!</a> </h5>
+         </div>
         </div>
         
       </div>
@@ -77,3 +80,9 @@
   </div>
 </div>
 </div>
+
+
+
+
+
+

@@ -224,6 +224,7 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   }
   public onLogout():void{
     localStorage.setItem("isAuthenticate",'false')
+    localStorage.setItem("isUsersAuthentication",'false')
     console.log(localStorage.getItem("userauthenticationvalue"))
     this.router.navigateByUrl('/login')
   }

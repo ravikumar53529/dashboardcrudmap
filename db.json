@@ -1,14 +1,14 @@
 {
   "posts": [
     {
-      "userId": 1,
-      "title": "Ahex",
-      "body": "Software company",
-      "id": 1
+      "title": "ravi53529",
+      "id": 1,
+      "body": "Ecommerce",
+      "userId": 1
     },
     {
       "userId": 2,
-      "title": "amazon4",
+      "title": "ramu53529",
       "body": "Ecommerce",
       "id": 2
     },
@@ -35,18 +35,6 @@
       "title": "samsung",
       "body": "Electronics",
       "id": 6
-    },
-    {
-      "userId": "7",
-      "title": "motorola",
-      "body": "electronics",
-      "gender": "Male",
-      "fruits": {
-        "fruit1": "orange",
-        "fruit2": "apple",
-        "fruit3": "banana"
-      },
-      "id": 7
     }
   ]
 }

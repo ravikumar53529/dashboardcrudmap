@@ -11,12 +11,15 @@ import {Router, Routes } from '@angular/router'
 export class LoginComponent implements OnInit{
   public loginFormData!:FormGroup;
   public credentialsData:Logindata[]=[];
+  public spinner:boolean=false;
   public loginData:Logindata={
     id: 0,
     username: '',
-    password: ''
+    password: '',
+    role:''
   }
   public userAuthenticationKey:boolean=false;
+  public isUsersAuthenticationKey:boolean=false;
  constructor( private dashboardSerivceRef:DashboardserviceService ,private formBuilderRef:FormBuilder,public routerRef:Router){}
   ngOnInit(): void {
     this.getLoginForm();
@@ -45,20 +48,34 @@ export class LoginComponent implements OnInit{
  }
  //login form data
  public onLoginFormData():void{
-  this.loginData=this.loginFormData.value;
-  if(this.loginFormData.value){
-    this.credentialsData.filter((data)=>{
-      if((data.username === this.loginData.username) && (data.password ===this.loginData.password)){
-        this.userAuthenticationKey=true;
-        localStorage.setItem("isAuthenticate",'true')
-        this.dashboardSerivceRef.userAuthenticationStatusFromLogin(this.userAuthenticationKey)
-        this.routerRef.navigateByUrl('/dashboard')
-        console.log(localStorage.getItem("userauthenticationvalue")) 
-      }
-    })
-  }else{
-    alert("please fill the form")
-  }
+  this.spinner=true
+  setTimeout(()=>{
+    this.loginData=this.loginFormData.value;
+    if(this.loginFormData.value){
+      this.credentialsData.filter((data)=>{
+        if((data.username === this.loginData.username) && (data.password ===this.loginData.password) &&(false)){
+          this.userAuthenticationKey=true;
+          localStorage.setItem("isAuthenticate",'true')
+          this.dashboardSerivceRef.userAuthenticationStatusFromLogin(this.userAuthenticationKey)
+          // this.routerRef.navigateByUrl('/dashboard')
+          this.spinner=false
+          alert("hello")
+          this.routerRef.navigateByUrl('/dashboardmain')
+          console.log(localStorage.getItem("userauthenticationvalue")) 
+        }
+        else if(true){
+          this.isUsersAuthenticationKey=true;
+          localStorage.setItem('isUsersAuthentication','true')
+          this.routerRef.navigateByUrl('/dashboard')
+        }else{
+          this.routerRef.navigateByUrl('/login')
+        }
+      })
+    }else{
+      alert("please fill the form")
+    }
+  },2000)
+ 
  }
 
  //get form fields for validations 

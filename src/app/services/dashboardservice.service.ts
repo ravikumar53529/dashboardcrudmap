@@ -4,21 +4,21 @@ import {Observable} from 'rxjs';
 import {Logindata} from '../interfaces/logindata';
 import {Dashboard} from '../interfaces/dashboard';
 import {Table2, VisitorsPost} from '../interfaces/table';
-import {josnPlaceholder,josnPlaceholderchild} from '../interfaces/josnplaceholder'
+import {josnPlaceholder,josnPlaceholderchild,jsonPlaceholderChild2} from '../interfaces/josnplaceholder'
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardserviceService  {
+export class DashboardserviceService {
 public credentialsData='../../assets/data/credential.json';
 public dashboardData='../../assets/data/dashboard.json';
 public dashboardTable='../../assets/data/table.json';
 public apiEndPoint='api/visits';
 public apiEndPointPost='api/admin/id';
-public mockApi='http://localhost:3000'
+public mockApi='http://localhost:3000';
+public jsonMockApi:string='https://jsonplaceholder.typicode.com/todos/'
 public timeOut:any;
-public alertTimeout:any;
 public userAuthentication:boolean=false;
 public temp:string='';
 public tempUserAuthentication:boolean=false
@@ -83,7 +83,14 @@ public tempUserAuthentication:boolean=false
   public updateJsonplaceholder(id:number,data:josnPlaceholderchild):Observable<josnPlaceholder>{
    return this.httpRef.put<josnPlaceholder>(this.mockApi+'/posts/'+id,data)
   }
-
+  //getonevalue for update
+  public getOneValueForUpdate(id:number):Observable<josnPlaceholderchild>{
+    return this.httpRef.get<josnPlaceholderchild>(this.mockApi+'/posts/'+id)
+  }
+  //update only one value
+  public updateOneValue(id:number,data:josnPlaceholderchild):Observable<josnPlaceholder>{
+    return this.httpRef.put<josnPlaceholder>(this.mockApi+'/posts/'+id,data)
+  }
 
   //automatic logout functionality
    start(timeoutValue:number){
@@ -96,4 +103,11 @@ public tempUserAuthentication:boolean=false
     clearTimeout(this.timeOut)
     this.start(60000)
    }
+
+
+   //get jsonplaceholder data
+
+  //  public getJsonPlaceholderData():Observable<any>{
+  //   return this.httpRef.post<any>(this.jsonMockApi,{name:'ravi'})
+  //  }
 }
